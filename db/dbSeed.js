@@ -1,25 +1,43 @@
 const query = require('./query.js');
 const faker = require('faker');
+const Promise = require('bluebird');
 
-
-module.exports.createCompanyNames = () => {
-
+module.exports.createCompNames = ()=> {
   let companyNames = [];
-  let i = 0;
-  while (i < 100) {
+  for (let i = 0; i < 100; i ++) {
     let name = faker.company.companyName();
     companyNames.push(name);
-    i ++;
   }
-  for (var k = 0; k < companyNames.length; k ++) {
-    query.postNames(companyNames[k], (err, results)=> {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(results);
-      }
-    });
-  }
-
   return companyNames;
+}
+
+module.exports.prices =()=> {
+  let prices = [];
+  for (let i = 0; i < 30; i ++) {
+    let price = faker.commerce.price();
+    prices.push(price);
+  }
+  return prices;
+}
+
+module.exports.volume =()=> {
+  let volumes = [];
+  for (let i = 0; i < 30; i ++) {
+    let volume = faker.random.number({min:0, max:100});
+    volumes.push(volume);
+  }
+  return volumes;
+}
+
+module.exports.date = ()=> {
+  let dates = [];
+  for (let i = 0; i < 30; i ++) {
+    dates.push(i);
+  }
+  return dates;
+}
+
+module.exports.currentPrice = () => {
+  let currentPrice = faker.commerce.price();
+  return currentPrice;
 }

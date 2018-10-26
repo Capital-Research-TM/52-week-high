@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS stock;
+DROP DATABASE IF EXISTS Robin_Hood;
 
-CREATE DATABASE stock;
+CREATE DATABASE Robin_Hood;
 
-USE stock;
+USE Robin_Hood;
 
 CREATE TABLE company (
   id int AUTO_INCREMENT PRIMARY KEY,
@@ -10,14 +10,10 @@ CREATE TABLE company (
 );
 
 CREATE TABLE stockPrice (
-  price int, volume int,
+  price int,
+  volume int,
   date int,
   company_id int,
   FOREIGN KEY (company_id)
-              REFERENCES company(id)
+    REFERENCES company(id)
 );
-
-
-INSERT INTO company (company)
-Value
-('Starbucks');
