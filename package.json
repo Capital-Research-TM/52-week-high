@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "react-dev": "webpack -d --watch",
-    "create-db": "mysql -u root < schema.sql"
+    "create-db": "node connection.js"
   },
   "repository": {
     "type": "git",
