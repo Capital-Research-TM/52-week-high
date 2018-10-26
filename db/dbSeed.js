@@ -1,6 +1,4 @@
-const query = require('./query.js');
 const faker = require('faker');
-const Promise = require('bluebird');
 
 module.exports.createCompNames = ()=> {
   let companyNames = [];
@@ -35,9 +33,4 @@ module.exports.date = ()=> {
     dates.push(i);
   }
   return dates;
-}
-
-module.exports.currentPrice = () => {
-  let currentPrice = faker.commerce.price();
-  return currentPrice;
 }

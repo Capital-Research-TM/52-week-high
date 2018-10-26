@@ -30,16 +30,13 @@ const seedDB = ()=> {
     };
     dataObj.push(obj);
   }
-
-
   Robin.insertMany(dataObj, (err, docs)=> {
     if (err) {
       console.log('failed to save in db');
     } else {
       console.log(docs);
     }
-
   });
-
 }
+
 seedDB();
