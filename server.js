@@ -6,7 +6,7 @@ const port = 3000;
 app.use(express.static(path.join(__dirname, 'client/dist')));
 // app.use(express.static('client/dist'));
 
-app.get('/hahahaha', (req ,res)=> {
+app.get('/company', (req ,res)=> {
       res.status(200).send();
 });
 
