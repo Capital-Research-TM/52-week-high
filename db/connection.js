@@ -16,14 +16,14 @@ var Robin = mongoose.model('Robin', robinHoodSchema);
 
 const seedDB = ()=> {
   let dataObj = [];
-  let names = seed.createCompNames();
+  let companyNames = seed.createCompNames();
   for (let i = 0; i < names.length; i++) {
     let prices = seed.prices();
     let volume = seed.volume();
     let dates = seed.date();
     let obj = {
       id : i,
-      company: names[i],
+      company: companyNames[i],
       prices: prices,
       volume: volume,
       dates: dates
