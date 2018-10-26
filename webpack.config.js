@@ -1,10 +1,11 @@
+
 module.exports = {
-  entry: __dirname + 'client/dist/src/index.jsx',
+  entry: __dirname + '/client/dist/src/index.jsx',
   output: {
     filename: 'bundle.js',
-    path: __dirname + 'client/dist'
+    path: __dirname + '/client/dist'
   },
-    module{
+    module: {
       rules: [
         {
           test: /\.jsx$/,
