@@ -8,7 +8,7 @@
     "start": "node server.js",
     "react-dev": "webpack -d --watch",
     "start-mongo": "mongod",
-    "create-db": "node connection.js"
+    "seed": "node ./db/connection.js"
   },
   "repository": {
     "type": "git",
