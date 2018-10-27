@@ -1,0 +1,16 @@
+
+.graphHouse {
+  display: flex;
+}
+.barContainer {
+  width: 678px;
+  height: 218px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+}
+
+.bar {
+  width: 11px;
+  background-color: #f45531;
+}
