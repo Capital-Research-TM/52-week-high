@@ -1,15 +1,14 @@
 const mongoose = require('mongoose');
-const seed = require('./dbseed.js');
-const faker = require('faker');
+const seed = require('./dbSeed.js');
 
 mongoose.connect('mongodb://localhost/test');
-var db = mongoose.connection;
+const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
+db.once('open', () => {
   console.log('we\'re connected!');
 });
 
-var robinHoodSchema = new mongoose.Schema({
+const robinHoodSchema = new mongoose.Schema({
   id: Number,
   company: String,
   prices: [],
@@ -17,31 +16,31 @@ var robinHoodSchema = new mongoose.Schema({
   dates: []
 });
 
-var Robin = mongoose.model('Robin', robinHoodSchema);
+const Robin = mongoose.model('Robin', robinHoodSchema);
 
 const seedDB = ()=> {
-  let dataObj = [];
-  let names = seed.createCompNames();
+  const dataObj = [];
+  const names = seed.createCompNames();
   for (let i = 0; i < names.length; i++) {
-    let prices = seed.prices();
-    let volume = seed.volume();
-    let dates = seed.date();
-    let obj = {
-      id : i,
+    const prices = seed.prices();
+    const volume = seed.volume();
+    const dates = seed.date();
+    const obj = {
+      id: i,
       company: names[i],
-      prices: prices,
-      volume: volume,
-      dates: dates
+      prices,
+      volume,
+      dates
     };
     dataObj.push(obj);
   }
-  Robin.insertMany(dataObj, (err, docs)=> {
+  Robin.insertMany(dataObj, (err, docs) => {
     if (err) {
       console.log('failed to save in db');
     } else {
-      console.log(docs);
+      console.log('sucess in seeding database');
     }
   });
-}
+};
 
 seedDB();
