@@ -12,7 +12,6 @@ class App extends React.Component {
     return (
       <div className="graphHouse">
         <div>
-          {'we are typed in jsx'}
         </div>
         <Bars />
       </div>

@@ -21,7 +21,7 @@ module.exports.prices =()=> {
 module.exports.volume =()=> {
   let volumes = [];
   for (let i = 0; i < 30; i ++) {
-    let volume = faker.random.number({min:0, max:100});
+    let volume = faker.random.number({min:0, max:50});
     volumes.push(volume);
   }
   return volumes;
