@@ -1,6 +1,7 @@
 
 .graphHouse {
   display: flex;
+  flex-direction: column;
 
 }
 .barContainer {
@@ -22,9 +23,27 @@
   color: green;
 }
 
-.static {
-  margin: 15px;
+.fiftyTwoWeek {
+  margin: 20px;
   display: flex;
-  width: 218px;
-  border-bottom: 1px solid rgba(211, 211, 211, .5);
+  width: 678px;
+  height: 125px;
+  border-top: 1px solid rgba(211, 211, 211);
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+.lowest {
+  color: rgba(211, 211, 211, 0.7);
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+.highest {
+  color: rgba(211, 211, 211, 0.7);
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
