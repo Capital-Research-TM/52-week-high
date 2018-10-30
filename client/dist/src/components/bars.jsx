@@ -1,22 +1,38 @@
 import React from 'react';
+import axios from 'axios';
 
 class Bars extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      barData: ['1','2','3','4','5','6','7','8','9','10', '11', '12','13','14','15','16','17','18','19','20'],
+    constructor(props) {
+      super(props)
+      this.state = {
+        data: [],
+        dummyBarData: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30'],
+      }
     }
-  }
-  render() {
-    return(
-      <div className="barContainer">
-      {this.state.barData.map((el)=> {
-        return <div className='bar'style={{height:`${el}%`}} key={el}></div>
-      })}
-      </div>
-    )
+    componentDidMount(props) {
+      axios.get('/company')
+        .then((response) => {
+          console.log(response.data);
+          console.log(response.data[0].volume);
+          this.setState({
+            data: response.data
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    }
+    render() {
+      return (
+        <div className="barContainer">
+      {this.state.data.map((el)=> {
+        return <div className='bar'style={{height:`${el.volume}%`}} key={el._id}></div>
+      })
+  } <
+  /div>
+)
 
-  }
+}
 }
 
 export default Bars;
