@@ -6,11 +6,10 @@ class Bars extends React.Component {
       super(props)
       this.state = {
         data: [],
-        dummyBarData: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30'],
       }
     }
     componentDidMount(props) {
-      axios.get('/company')
+      axios.get('/company/6')
         .then((response) => {
           console.log(response.data);
           console.log(response.data[0].volume);
