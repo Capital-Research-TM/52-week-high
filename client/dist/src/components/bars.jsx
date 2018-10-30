@@ -1,31 +1,67 @@
 import React from 'react';
 import axios from 'axios';
 
+const calculateAverage = (response) => {
+  var total = 0;
+  for (let i = 0; i < response.data.length; i++) {
+    total += response.data[i].prices;
+  }
+  console.log(response.data);
+  return total / response.data.length;
+}
+
+const findCurrentPrice = (response) => {
+  var currentPrice = 0;
+  for (let i = 0; i < response.data.length; i++) {
+    if (response.data[i].dates === 29) {
+      currentPrice = response.data[i].prices;
+    }
+  }
+  console.log(currentPrice);
+  return currentPrice;
+}
+
 class Bars extends React.Component {
     constructor(props) {
       super(props)
       this.state = {
         data: [],
+        currentPrice: 0,
+        average: 0,
+        marketClosed: false,
       }
     }
     componentDidMount(props) {
-      axios.get('/company/6')
+      axios.get('/company/20')
         .then((response) => {
-          console.log(response.data);
-          console.log(response.data[0].volume);
+          let average = calculateAverage(response);
+          let currentPrice = findCurrentPrice(response);
           this.setState({
-            data: response.data
+            data: response.data,
+            currentPrice,
+            average
           });
         })
         .catch((error) => {
           console.log(error);
         })
     }
+
+
+
     render() {
+      if (this.state.currentPrice > this.state.average) {
+        var maxRedBar = this.state.currentPrice;
+        var leastRedBar = this.state.average;
+      } else {
+        var maxRedBar = this.state.average;
+        var leastRedBar = this.state.currentPrice;
+      }
       return (
         <div className="barContainer">
       {this.state.data.map((el)=> {
-        return <div className='bar'style={{height:`${el.volume}%`}} key={el._id}></div>
+
+        return <div className='bar'style={{height:`${el.volume}%`, backgroundColor: el.prices < maxRedBar && el.prices > leastRedBar ? '#f45531' : 'rgba(211, 211, 211, .5)' }} key={el._id} ></div>
       })
   } <
   /div>

@@ -7,9 +7,15 @@ module.exports.get = (id, callback)=> {
     if (err) {
       callback(err, null);
     } else {
-      callback(null, docs);
+      sortByPrice(docs, callback);
     }
   })
 }
 
-//db.bios.find( { _id: 5 } )
+const sortByPrice = (docs, callback) => {
+  docs.sort((a,b) => {
+    return a.prices - b.prices;
+  })
+  callback(null, docs);
+
+}
