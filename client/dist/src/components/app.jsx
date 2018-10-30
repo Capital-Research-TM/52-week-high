@@ -17,8 +17,9 @@ class App extends React.Component {
   render() {
     return (
       <div className="graphHouse">
-        <div>
         <CurrentPrice />
+        <div><h2>Price Paid on Robinhood</h2></div>
+        <div>
         <Bars />
         <FiftyTwoWeekInfo />
         </div>

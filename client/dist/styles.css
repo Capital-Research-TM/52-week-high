@@ -2,6 +2,9 @@
 .graphHouse {
   display: flex;
   flex-direction: column;
+  width: 738px;
+  height: 391px;
+  position: relative;
 
 }
 .barContainer {
@@ -12,6 +15,7 @@
   align-items: flex-end;
   border-top: 1px solid rgba(211, 211, 211, .5);
   position: relative;
+  z-index: 2;
 }
 
 .bar {
@@ -29,6 +33,7 @@
   flex-direction: row;
   justify-content: space-between;
   position: relative;
+  z-index: 3;
 }
 
 
@@ -46,18 +51,29 @@
   align-items: flex-end;
 }
 
-.overlay {
-  position: absolute;
-  left: 0; top: 0; right: 0; bottom: 0;
-  width: 100%;
-  height: 100%;
-  background-color: black;
+#overlay {
+  position: relative;
+  z-index: 9997;
+
+
 }
 
 .sphere {
+  position: relative;
   border-radius: 50%;
   background-color: #f45531;
   height: 10px;
   width: 10px;
-  z-index: 9999;
+  top:311px;
+  left: 50px;
+}
+
+.horizon {
+  border-left: 1px solid #f45531;
+  width: 2px;
+  height: 50px;
+  top:311px;
+  left: 50px;
+
+
 }

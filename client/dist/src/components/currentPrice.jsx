@@ -8,6 +8,7 @@ class CurrentPrice extends React.Component {
   render() {
     return (
       <div id="overlay">
+        <div className="horizon"></div>
         <div className="sphere"></div>
       </div>
     )
