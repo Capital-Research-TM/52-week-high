@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
-const seed = require('./dbSeed.js');
+
+
+const db = mongoose.connection;
+
 
 mongoose.connect('mongodb://localhost/test');
-const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
   console.log('we\'re connected!');
@@ -11,36 +13,19 @@ db.once('open', () => {
 const robinHoodSchema = new mongoose.Schema({
   id: Number,
   company: String,
-  prices: [],
-  volume: [],
-  dates: []
+  prices: Number,
+  volume: Number,
+  dates: Number
 });
 
-const Robin = mongoose.model('Robin', robinHoodSchema);
+module.exports.Robin = mongoose.model('Robin', robinHoodSchema);
 
-const seedDB = ()=> {
-  const dataObj = [];
-  const names = seed.createCompNames();
-  for (let i = 0; i < names.length; i++) {
-    const prices = seed.prices();
-    const volume = seed.volume();
-    const dates = seed.date();
-    const obj = {
-      id: i,
-      company: names[i],
-      prices,
-      volume,
-      dates
-    };
-    dataObj.push(obj);
-  }
-  Robin.insertMany(dataObj, (err, docs) => {
-    if (err) {
-      console.log('failed to save in db');
-    } else {
-      console.log('sucess in seeding database');
-    }
+
+module.exports.drop = () => {
+  console.log('this is a function');
+  db.dropDatabase(function (err) {
+    console.log('dropped database');
+    mongoose.connection.close();
+    initialize = false;
   });
-};
-
-seedDB();
+}

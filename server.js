@@ -1,13 +1,24 @@
+
 const express = require('express');
+
 const path = require('path');
+
+const query = require('./modals/query.js');
+
 const app = express();
 const port = 3000;
 
 app.use(express.static(path.join(__dirname, 'client/dist')));
-// app.use(express.static('client/dist'));
 
-app.get('/company', (req ,res)=> {
-      res.status(200).send();
+app.get('/company/:id', (req, res) => {
+  const id = JSON.parse(req.params.id);
+  query.get(id, (err, docs) => {
+    if (err) {
+      res.status(500).send();
+    } else {
+      res.status(200).send(JSON.stringify(docs));
+    }
+  });
 });
 
 app.listen(port, (err) => {
