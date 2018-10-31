@@ -1,12 +1,12 @@
 import React from 'react';
 import axios from 'axios';
 
+
 const calculateAverage = (response) => {
   var total = 0;
   for (let i = 0; i < response.data.length; i++) {
     total += response.data[i].prices;
   }
-  console.log(response.data);
   return total / response.data.length;
 }
 
@@ -17,8 +17,17 @@ const findCurrentPrice = (response) => {
       currentPrice = response.data[i].prices;
     }
   }
-  console.log(currentPrice);
   return currentPrice;
+}
+
+const marketIsOpen = () => {
+  var date = new Date();
+  var currentHour = date.getHours();
+  if (currentHour > 15 && currentHour < 6) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 class Bars extends React.Component {
@@ -28,14 +37,15 @@ class Bars extends React.Component {
         data: [],
         currentPrice: 0,
         average: 0,
-        marketClosed: false,
+        marketHours: this.props.marketIsOpen,
       }
     }
     componentDidMount(props) {
-      axios.get('/company/20')
+      axios.get('/company/10')
         .then((response) => {
           let average = calculateAverage(response);
           let currentPrice = findCurrentPrice(response);
+          // let isMarketOpen = marketIsOpen();
           this.setState({
             data: response.data,
             currentPrice,
@@ -51,17 +61,29 @@ class Bars extends React.Component {
 
     render() {
       if (this.state.currentPrice > this.state.average) {
-        var maxRedBar = this.state.currentPrice;
-        var leastRedBar = this.state.average;
+        var maxHighlightBar = this.state.currentPrice;
+        var leastHighlightBar = this.state.average;
       } else {
-        var maxRedBar = this.state.average;
-        var leastRedBar = this.state.currentPrice;
+        var maxHighlightBar = this.state.average;
+        var leastHighlightBar = this.state.currentPrice;
+      }
+      var barNoHighlight = '';
+      var barHighlight = '';
+      if (this.state.marketHours) {
+        barHighlight = '#f45531';
+        barNoHighlight = 'rgba(211, 211, 211, .5)';
+      } else if (!this.state.marketHours && this.state.currentPrice > this.state.average) {
+        barHighlight = '#21ce99';
+        barNoHighlight = '#0e0d0d';
+      } else {
+        barHighlight = '#f45531';
+        barNoHighlight = '#0e0d0d';
       }
       return (
         <div className="barContainer">
       {this.state.data.map((el)=> {
 
-        return <div className='bar'style={{height:`${el.volume}%`, backgroundColor: el.prices < maxRedBar && el.prices > leastRedBar ? '#f45531' : 'rgba(211, 211, 211, .5)' }} key={el._id} ></div>
+        return <div className='bar'style={{height:`${el.volume}%`, backgroundColor: el.prices < maxHighlightBar && el.prices > leastHighlightBar ? barHighlight : barNoHighlight }} key={el._id} ></div>
       })
   } <
   /div>

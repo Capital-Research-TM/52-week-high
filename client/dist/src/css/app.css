@@ -1,0 +1,8 @@
+.graphHouse {
+  display: flex;
+  flex-direction: column;
+  width: 738px;
+  height: 391px;
+  position: relative;
+  background-color: #fff;
+}

@@ -1,4 +1,5 @@
 
+
 module.exports = {
   entry: __dirname + '/client/dist/src/index.jsx',
   output: {
@@ -16,8 +17,11 @@ module.exports = {
               presets: ['@babel/preset-react', '@babel/preset-env']
             }
           }
+        },
+        {
+          test: /\.css$/,
+          use:['style-loader', 'css-loader']
         }
-      ]
-
-    }
+    ]
+  }
 }
