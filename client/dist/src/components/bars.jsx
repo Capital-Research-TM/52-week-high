@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Styles from '../css/bars.css';
 
 
 const calculateAverage = (response) => {
@@ -58,38 +59,35 @@ class Bars extends React.Component {
     }
 
 
-
     render() {
-      if (this.state.currentPrice > this.state.average) {
-        var maxHighlightBar = this.state.currentPrice;
-        var leastHighlightBar = this.state.average;
-      } else {
-        var maxHighlightBar = this.state.average;
-        var leastHighlightBar = this.state.currentPrice;
+        if (this.state.currentPrice > this.state.average) {
+          var maxHighlightBar = this.state.currentPrice;
+          var leastHighlightBar = this.state.average;
+        } else {
+          var maxHighlightBar = this.state.average;
+          var leastHighlightBar = this.state.currentPrice;
+        }
+        var barNoHighlight = '';
+        var barHighlight = '';
+        if (this.state.marketHours) {
+          barHighlight = '#f45531';
+          barNoHighlight = 'rgba(211, 211, 211, .5)';
+        } else if (!this.state.marketHours && this.state.currentPrice > this.state.average) {
+          barHighlight = '#21ce99';
+          barNoHighlight = '#0e0d0d';
+        } else {
+          barHighlight = '#f45531';
+          barNoHighlight = '#0e0d0d';
+        }
+        return (
+            <div className={Styles.barContainer}>
+              {this.state.data.map((el)=> {
+                return <div className={Styles.bar} style={{height:`${el.volume}%`, backgroundColor: el.prices < maxHighlightBar && el.prices > leastHighlightBar ? barHighlight : barNoHighlight }} key={el._id} ></div>
+              })
+            } <
+            /div>
+          )
       }
-      var barNoHighlight = '';
-      var barHighlight = '';
-      if (this.state.marketHours) {
-        barHighlight = '#f45531';
-        barNoHighlight = 'rgba(211, 211, 211, .5)';
-      } else if (!this.state.marketHours && this.state.currentPrice > this.state.average) {
-        barHighlight = '#21ce99';
-        barNoHighlight = '#0e0d0d';
-      } else {
-        barHighlight = '#f45531';
-        barNoHighlight = '#0e0d0d';
-      }
-      return (
-        <div className="barContainer">
-      {this.state.data.map((el)=> {
-
-        return <div className='bar'style={{height:`${el.volume}%`, backgroundColor: el.prices < maxHighlightBar && el.prices > leastHighlightBar ? barHighlight : barNoHighlight }} key={el._id} ></div>
-      })
-  } <
-  /div>
-)
-
-}
 }
 
 export default Bars;
