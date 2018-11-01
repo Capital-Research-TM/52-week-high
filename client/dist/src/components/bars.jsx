@@ -72,6 +72,8 @@ class Bars extends React.Component {
     <FiftyTwoWeekInfo lowestPrice={this.state.lowestPrice} highestPrice={this.state.highestPrice}/>
   </div>
     )
+
+
   }
 }
 
