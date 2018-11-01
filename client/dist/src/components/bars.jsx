@@ -11,8 +11,11 @@ import {
   barHighlightColor
 } from './utilities/bars.js';
 
+
 import axios from 'axios';
 import Styles from '../css/bars.css';
+
+
 
 class Bars extends React.Component {
   constructor(props) {
@@ -29,6 +32,7 @@ class Bars extends React.Component {
       barHighlight: 'white'
     }
   }
+
   componentDidMount(props) {
     axios.get('/company/14')
       .then((response) => {
@@ -68,6 +72,7 @@ class Bars extends React.Component {
     <FiftyTwoWeekInfo />
   </div>
     )
+
   }
 }
 
