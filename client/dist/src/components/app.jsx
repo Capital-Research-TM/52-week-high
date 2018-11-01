@@ -2,26 +2,25 @@ import React from 'react';
 import Bars from './bars.jsx';
 import axios from 'axios';
 import styles from '../css/app.css';
+import {
+  marketIsOpen
+} from './utilities/app.js';
 
-
-const marketIsOpen = () => {
-  const date = new Date();
-  const currentHour = date.getHours();
-  if (currentHour > 6 && currentHour < 15) {
-    return true;
-  } else {
-    return false;
-  }
-}
 
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      marketIsOpen: marketIsOpen(),
+      marketIsOpen: true
     }
   }
 
+  componentDidMount() {
+    let marketTime = marketIsOpen();
+    this.setState({
+      marketIsOpen: marketTime
+    })
+  }
 
   render() {
     return (
