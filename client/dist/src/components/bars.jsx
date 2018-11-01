@@ -4,7 +4,7 @@ import Styles from '../css/bars.css';
 
 
 const calculateAverage = (response) => {
-  var total = 0;
+  let total = 0;
   for (let i = 0; i < response.data.length; i++) {
     total += response.data[i].prices;
   }
@@ -22,8 +22,8 @@ const findCurrentPrice = (response) => {
 }
 
 const marketIsOpen = () => {
-  var date = new Date();
-  var currentHour = date.getHours();
+  const date = new Date();
+  const currentHour = date.getHours();
   if (currentHour > 15 && currentHour < 6) {
     return true;
   } else {
