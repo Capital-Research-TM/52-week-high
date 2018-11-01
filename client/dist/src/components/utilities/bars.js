@@ -1,5 +1,5 @@
 const calculateAverage = (response) => {
-  var total = 0;
+  let total = 0;
   for (let i = 0; i < response.data.length; i++) {
     total += response.data[i].prices;
   }
@@ -7,7 +7,7 @@ const calculateAverage = (response) => {
 }
 
 const findCurrentPrice = (response) => {
-  var currentPrice = 0;
+  let currentPrice = 0;
   for (let i = 0; i < response.data.length; i++) {
     if (response.data[i].dates === 29) {
       currentPrice = response.data[i].prices;
@@ -62,11 +62,21 @@ const barHighlightColor = (marketHours, currentPrice, average) => {
   return barHighlight;
 }
 
+const percentageDiff = (currentPrice, average) => {
+  if (currentPrice < average) {
+    const percent = JSON.stringify(Math.round((currentPrice / average) * 100));
+    return `-${percent}%`;
+  }
+  const percent = JSON.stringify(Math.round((average / currentPrice)* 100));
+  return `${percent}%`;
+}
+
 export {
   calculateAverage,
   findCurrentPrice,
   maxHighLightBarColor,
   leastHighlightBarColor,
   barNoHighlightColor,
-  barHighlightColor
+  barHighlightColor,
+  percentageDiff
 };

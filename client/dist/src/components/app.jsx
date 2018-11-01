@@ -25,7 +25,7 @@ class App extends React.Component {
   render() {
     return (
       <div className={styles.graphHouse} style={{backgroundColor: this.state.marketIsOpen ? '#fff' : 'rgb(27, 27, 29)'}}>
-        <div><h2 style={{color: this.state.marketIsOpen ? '#0e0d0d' : '#fff'}}>Price Paid on Robinhood</h2></div>
+        <div><h2 className={styles.header} style={{color: this.state.marketIsOpen ? '#0e0d0d' : '#fff'}}>Price Paid on Robinhood</h2></div>
         <Bars marketIsOpen={this.state.marketIsOpen}/>
       </div>
     )

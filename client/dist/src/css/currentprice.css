@@ -25,14 +25,14 @@
   height: 142px;
   width:1px;
   background-color: #21ce99;
-  transform: translate(5px, -142px);
+  transform: translate(5px, -153px);
 }
 
 #lineLow {
   height: 142px;
   width:1px;
   background-color: #f45531;
-  transform: translate(-5px, -142px);
+  transform: translate(-5px, -153px);
 }
 
 .sphereHigh {
@@ -51,12 +51,12 @@
   width: 10px;
   z-index: 9999;
   transform: translate(-10px, 23px);
+  display: flex;
+  flex-direction: column;
 }
 
-.horizon {
-  border-left: 1px solid #f45531;
-  width: 2px;
-  height: 50px;
+#percentage {
+  width: 100px;
   top: 10;
   left: 50px;
 }

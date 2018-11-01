@@ -8,7 +8,8 @@ import {
   maxHighLightBarColor,
   leastHighlightBarColor,
   barNoHighlightColor,
-  barHighlightColor
+  barHighlightColor,
+  percentageDiff
 } from './utilities/bars.js';
 
 import axios from 'axios';
@@ -28,7 +29,8 @@ class Bars extends React.Component {
       barNoHighlight: 'black',
       barHighlight: 'white',
       lowestPrice: 0,
-      highestPrice: 100
+      highestPrice: 100,
+      percentageDiff: '0'
     }
   }
   componentDidMount(props) {
@@ -45,7 +47,8 @@ class Bars extends React.Component {
           barNoHighlight: barNoHighlightColor(this.state.marketHours, currentPrice, average),
           barHighlight: barHighlightColor(this.state.marketHours, currentPrice, average),
           lowestPrice: response.data[0].prices,
-          highestPrice: response.data[response.data.length - 1].prices
+          highestPrice: response.data[response.data.length - 1].prices,
+          percentageDiff: percentageDiff(currentPrice, average)
         });
       })
       .catch((error) => {
@@ -53,6 +56,7 @@ class Bars extends React.Component {
       })
   }
   render() {
+    console.log("bars:", this.state.percentageDiff);
     return (
       <div className={Styles.containGraphToBottomBar}>
         <div className={Styles.barContainer}>
@@ -68,7 +72,7 @@ class Bars extends React.Component {
             })
           }
         </div>
-    <CurrentPrice data={this.state.data} price={this.state.currentPrice} average={this.state.average}/>
+    <CurrentPrice data={this.state.data} price={this.state.currentPrice} average={this.state.average} percent={this.state.percentageDiff}/>
     <FiftyTwoWeekInfo lowestPrice={this.state.lowestPrice} highestPrice={this.state.highestPrice}/>
   </div>
     )
