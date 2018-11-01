@@ -11,10 +11,8 @@ import {
   barHighlightColor,
   percentageDiff
 } from './utilities/bars.js';
-
 import axios from 'axios';
 import Styles from '../css/bars.css';
-
 class Bars extends React.Component {
   constructor(props) {
     super(props)
@@ -76,6 +74,7 @@ class Bars extends React.Component {
     <FiftyTwoWeekInfo lowestPrice={this.state.lowestPrice} highestPrice={this.state.highestPrice}/>
   </div>
     )
+
   }
 }
 
