@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../css/currentprice.css';
 
 class CurrentPrice extends React.Component {
   constructor(props) {
@@ -7,9 +8,9 @@ class CurrentPrice extends React.Component {
   }
   render() {
     return (
-      <div id="overlay">
-        <div className="horizon"></div>
-        <div className="sphere"></div>
+      <div className={styles.overlay}>
+        <div className={styles.horizon}></div>
+        <div className={styles.sphere}></div>
       </div>
     )
   }

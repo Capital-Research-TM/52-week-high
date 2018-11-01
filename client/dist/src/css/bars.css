@@ -1,0 +1,15 @@
+.barContainer {
+  width: 678px;
+  height: 218px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  border-top: 1px solid rgba(211, 211, 211, .5);
+  position: relative;
+  z-index: 2;
+}
+
+.bar {
+  width: 11px;
+  background-color: #f45531;
+}
