@@ -16,7 +16,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    let marketTime = marketIsOpen();
+    const marketTime = marketIsOpen();
     this.setState({
       marketIsOpen: marketTime
     })

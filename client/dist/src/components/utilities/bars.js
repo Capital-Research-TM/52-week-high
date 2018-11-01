@@ -62,4 +62,11 @@ const barHighlightColor = (marketHours, currentPrice, average) => {
   return barHighlight;
 }
 
-export {calculateAverage, findCurrentPrice, maxHighLightBarColor, leastHighlightBarColor, barNoHighlightColor, barHighlightColor};
+export {
+  calculateAverage,
+  findCurrentPrice,
+  maxHighLightBarColor,
+  leastHighlightBarColor,
+  barNoHighlightColor,
+  barHighlightColor
+};

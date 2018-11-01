@@ -26,7 +26,9 @@ class Bars extends React.Component {
       maxHighlightBar: 'white',
       leastHighlightBar: 'black',
       barNoHighlight: 'black',
-      barHighlight: 'white'
+      barHighlight: 'white',
+      lowestPrice: 0,
+      highestPrice: 100
     }
   }
   componentDidMount(props) {
@@ -41,7 +43,9 @@ class Bars extends React.Component {
           maxHighlightBar: maxHighLightBarColor(currentPrice, average),
           leastHighlightBar: leastHighlightBarColor(currentPrice, average),
           barNoHighlight: barNoHighlightColor(this.state.marketHours, currentPrice, average),
-          barHighlight: barHighlightColor(this.state.marketHours, currentPrice, average)
+          barHighlight: barHighlightColor(this.state.marketHours, currentPrice, average),
+          lowestPrice: response.data[0].prices,
+          highestPrice: response.data[response.data.length - 1].prices
         });
       })
       .catch((error) => {
@@ -65,7 +69,7 @@ class Bars extends React.Component {
           }
         </div>
     <CurrentPrice data={this.state.data} price={this.state.currentPrice} average={this.state.average}/>
-    <FiftyTwoWeekInfo />
+    <FiftyTwoWeekInfo lowestPrice={this.state.lowestPrice} highestPrice={this.state.highestPrice}/>
   </div>
     )
   }
