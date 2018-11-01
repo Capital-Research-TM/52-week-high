@@ -12,7 +12,7 @@ class FiftyTwoWeekInfo extends React.Component {
   render() {
     return (
       <div className={styles.fiftyTwoWeek}>
-      <div className="lowest">
+      <div className={styles.lowest}>
         <span>52 week low </span>
         <span>{this.state.lowest}</span>
       </div>
