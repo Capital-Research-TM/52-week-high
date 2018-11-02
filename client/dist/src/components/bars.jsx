@@ -17,10 +17,8 @@ import {
   percentageDiff,
   findNextHighestNumber
 } from './utilities/bars.js';
-
 import axios from 'axios';
 import Styles from '../css/bars.css';
-
 class Bars extends React.Component {
   constructor(props) {
     super(props)
@@ -83,6 +81,7 @@ class Bars extends React.Component {
     this.setState({
       isToggleOn: false
     })
+
   }
 
   render() {
@@ -144,6 +143,7 @@ class Bars extends React.Component {
        highestPrice={this.state.highestPrice}/>
    </div>
     )
+
   }
 }
 
