@@ -14,9 +14,13 @@
   z-index: 2;
 }
 
-.bar {
+ .bar {
   width: 11px;
   background-color: #f45531;
+}
+
+.e:hover {
+  background-color: red;
 }
 
 #target {

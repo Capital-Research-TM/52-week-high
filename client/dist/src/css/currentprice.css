@@ -21,18 +21,18 @@
   transform: translateY(23px);
 }
 
-#lineHigh {
+.lineHigh {
   height: 142px;
   width:1px;
   background-color: #21ce99;
   transform: translate(5px, -153px);
 }
 
-#lineLow {
+.lineLow {
   height: 142px;
   width:1px;
   background-color: #f45531;
-  transform: translate(-5px, -153px);
+  transform: translate(-10px, -153px);
 }
 
 .sphereHigh {
@@ -53,10 +53,4 @@
   transform: translate(-10px, 23px);
   display: flex;
   flex-direction: column;
-}
-
-#percentage {
-  width: 100px;
-  top: 10;
-  left: 50px;
 }

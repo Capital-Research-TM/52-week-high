@@ -35,9 +35,10 @@ class Bars extends React.Component {
       percentageDiff: '0',
       averageTag: 0
     }
+    this.handleOnClick = this.handleOnClick.bind(this);
   }
   componentDidMount(props) {
-    axios.get('/company/14')
+    axios.get('/company/13')
       .then((response) => {
         let average = calculateAverage(response);
         let currentPrice = findCurrentPrice(response);
@@ -58,31 +59,47 @@ class Bars extends React.Component {
       .catch((error) => {
         console.log(error);
       })
-
+  }
+  handleOnClick(event) {
+    console.log('target', event);
   }
   render() {
     console.log("next:", this.state.averageTag);
     return (
       <div className={Styles.containGraphToBottomBar}>
         <div className={Styles.barContainer}>
-          {this.state.data.map((el, index)=>
-            {
+          {this.state.data.map((el, index)=> {
             if (el.prices === this.state.currentPrice){
-              return <div id={Styles.target} style={{height:`${el.volume}%`, backgroundColor: el.prices <= this.state.maxHighlightBar && el.prices >= this.state.leastHighlightBar ? this.state.barHighlight : this.state.barNoHighlight }} key={el._id} >
+              return <div id={Styles.target}
+                onClick={()=> {this.handleOnClick(el)}}
+                style={{height:`${el.volume}%`, backgroundColor: el.prices <= this.state.maxHighlightBar && el.prices >= this.state.leastHighlightBar ? this.state.barHighlight : this.state.barNoHighlight }}
+                key={el._id} >
                   <div></div>
               </div>
             } else if (el.prices === this.state.averageTag) {
-              return <div className={Styles.bar} style={{height:`${el.volume}%`, backgroundColor: el.prices <= this.state.maxHighlightBar && el.prices >= this.state.leastHighlightBar ? this.state.barHighlight : this.state.barNoHighlight }} key={el._id}>
-                <AverageTag average={this.state.average}/>
+              return <div className={Styles.bar}
+                onClick={()=> {this.handleOnClick(el)}}
+                style={{height:`${el.volume}%`, backgroundColor: el.prices <= this.state.maxHighlightBar && el.prices >= this.state.leastHighlightBar ? this.state.barHighlight : this.state.barNoHighlight }}
+                key={el._id}>
+                <AverageTag average={this.state.average} height={el.volume}/>
               </div>
             }
-            return <div className={Styles.bar} style={{height:`${el.volume}%`, backgroundColor: el.prices <= this.state.maxHighlightBar && el.prices >= this.state.leastHighlightBar ? this.state.barHighlight : this.state.barNoHighlight }} key={el._id} >
+            return <div className={Styles.bar}
+                onClick={()=> {this.handleOnClick(el)}}
+              style={{height:`${el.volume}%`, backgroundColor: el.prices <= this.state.maxHighlightBar && el.prices >= this.state.leastHighlightBar ? this.state.barHighlight : this.state.barNoHighlight }}
+              key={el._id} >
             </div>
             })
           }
         </div>
-    <CurrentPrice data={this.state.data} price={this.state.currentPrice} average={this.state.average} percent={this.state.percentageDiff}/>
-    <FiftyTwoWeekInfo lowestPrice={this.state.lowestPrice} highestPrice={this.state.highestPrice}/>
+    <CurrentPrice
+      data={this.state.data}
+      price={this.state.currentPrice}
+      average={this.state.average}
+      percent={this.state.percentageDiff}/>
+    <FiftyTwoWeekInfo
+      lowestPrice={this.state.lowestPrice}
+       highestPrice={this.state.highestPrice}/>
   </div>
     )
   }
