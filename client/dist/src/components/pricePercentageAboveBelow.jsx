@@ -6,7 +6,6 @@ const Percentage = (props) => {
     return (
       <div className={styles.pricePercentageContainer} >
         <div className={styles.currentPricePercentage}>
-
         <span style={{color: '#21ce99' }}>{props.percent} Higher</span>
         </div>
         <div className={styles.currentPricePercentage}>
@@ -16,11 +15,14 @@ const Percentage = (props) => {
     )
   }
   return (
-    <div className={styles.pricePercentageContainer}>
-      <span style={{color: '#f45531' }}>{props.percent + ' Lower'}</span>
-      <span style={{color: '#f45531' }} id={styles.rightNow}>Right Now</span>
+    <div className={styles.pricePercentageContainer} >
+      <div className={styles.currentPricePercentage}>
+      <span style={{color: '#f45531' }}>{props.percent} Higher</span>
+      </div>
+      <div className={styles.currentPricePercentage}>
+        <span style={{color: '#f45531' }} id={styles.rightNow}>Right Now</span>
+      </div>
     </div>
   )
 }
-
 export default Percentage;

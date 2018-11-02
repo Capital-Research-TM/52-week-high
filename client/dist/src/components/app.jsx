@@ -11,7 +11,8 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      marketIsOpen: true
+      marketIsOpen: true,
+      marketUp: true
     }
   }
 
