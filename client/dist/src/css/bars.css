@@ -1,3 +1,8 @@
+.containGraphToBottomBar {
+  display: flex;
+  height: 391;
+  flex-direction: column;
+}
 .barContainer {
   width: 678px;
   height: 218px;
@@ -10,6 +15,11 @@
 }
 
 .bar {
+  width: 11px;
+  background-color: #f45531;
+}
+
+#target {
   width: 11px;
   background-color: #f45531;
 }

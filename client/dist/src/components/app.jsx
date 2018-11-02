@@ -1,40 +1,32 @@
 import React from 'react';
 import Bars from './bars.jsx';
-import FiftyTwoWeekInfo from './fiftyTwoWeekInfo.jsx';
-import CurrentPrice from './currentPrice.jsx';
 import axios from 'axios';
 import styles from '../css/app.css';
+import {
+  marketIsOpen
+} from './utilities/app.js';
 
-
-const marketIsOpen = () => {
-  var date = new Date();
-  var currentHour = date.getHours();
-  console.log(currentHour);
-  if (currentHour > 6 && currentHour < 15) {
-    return true;
-  } else {
-    return false;
-  }
-}
 
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      marketIsOpen: marketIsOpen(),
+      marketIsOpen: true
     }
   }
 
+  componentDidMount() {
+    const marketTime = marketIsOpen();
+    this.setState({
+      marketIsOpen: marketTime
+    })
+  }
 
   render() {
     return (
       <div className={styles.graphHouse} style={{backgroundColor: this.state.marketIsOpen ? '#fff' : 'rgb(27, 27, 29)'}}>
-        <CurrentPrice />
-        <div><h2 style={{color: this.state.marketIsOpen ? '#0e0d0d' : '#fff'}}>Price Paid on Robinhood</h2></div>
-        <div>
+        <div><h2 className={styles.header} style={{color: this.state.marketIsOpen ? '#0e0d0d' : '#fff'}}>Price Paid on Robinhood</h2></div>
         <Bars marketIsOpen={this.state.marketIsOpen}/>
-        <FiftyTwoWeekInfo marketIsOpen={this.state.marketIsOpen}/>
-        </div>
       </div>
     )
   }
