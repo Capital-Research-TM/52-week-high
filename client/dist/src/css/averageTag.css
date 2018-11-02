@@ -1,6 +1,6 @@
 .averageTag {
   transform: translateY(154px);
-  color: rgb(255,255,255);
+  color: black;
   z-index: 500;
   display: flex;
   flex-direction: column;

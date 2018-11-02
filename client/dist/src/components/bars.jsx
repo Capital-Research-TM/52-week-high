@@ -2,6 +2,10 @@ import React from 'react';
 import CurrentPrice from './currentPrice.jsx';
 import FiftyTwoWeekInfo from './fiftyTwoWeekInfo.jsx';
 import AverageTag from './averageTag.jsx';
+import ShowBarInfo from './showBarInfo.jsx';
+import CurrentPriceBar from './CurrentPriceBar.jsx';
+import NormalBar from './normalBar.jsx';
+import AverageBar from './averageBar.jsx';
 
 import {
   calculateAverage,
@@ -33,12 +37,17 @@ class Bars extends React.Component {
       lowestPrice: 0,
       highestPrice: 100,
       percentageDiff: '0',
-      averageTag: 0
+      averageTag: 0,
+      isToggleOn: false,
+      showPrice: 0,
+      showVolume: 0,
+      showCompanyName: ''
     }
-    this.handleOnClick = this.handleOnClick.bind(this);
+    this.handleOnClick = this.handleBarOnClick.bind(this);
+    this.handleTableOnClick = this.handleTableOnClick.bind(this);
   }
   componentDidMount(props) {
-    axios.get('/company/13')
+    axios.get('/company/19')
       .then((response) => {
         let average = calculateAverage(response);
         let currentPrice = findCurrentPrice(response);
@@ -60,37 +69,70 @@ class Bars extends React.Component {
         console.log(error);
       })
   }
-  handleOnClick(event) {
-    console.log('target', event);
+  handleBarOnClick(event) {
+    console.log('target', event.prices);
+    this.setState({
+      isToggleOn: true,
+      showCompanyName: 'Lester',
+      showPrice: event.prices,
+      showVolume: event.volume
+    })
   }
+
+  handleTableOnClick(event) {
+    this.setState({
+      isToggleOn: false
+    })
+  }
+
   render() {
-    console.log("next:", this.state.averageTag);
     return (
       <div className={Styles.containGraphToBottomBar}>
+          <ShowBarInfo handleTableOnClick={this.handleTableOnClick}
+            isToggleOn={this.state.isToggleOn}
+            showVolume={this.state.showVolume}
+            showPrice={this.state.showPrice}
+            showCompanyName={this.state.showCompanyName}
+            />
         <div className={Styles.barContainer}>
           {this.state.data.map((el, index)=> {
             if (el.prices === this.state.currentPrice){
-              return <div id={Styles.target}
-                onClick={()=> {this.handleOnClick(el)}}
-                style={{height:`${el.volume}%`, backgroundColor: el.prices <= this.state.maxHighlightBar && el.prices >= this.state.leastHighlightBar ? this.state.barHighlight : this.state.barNoHighlight }}
-                key={el._id} >
-                  <div></div>
-              </div>
+            return <CurrentPriceBar
+                price={el.prices}
+                maxHighlightBar={this.state.maxHighlightBar}
+                leastHighlightBar={this.state.leastHighlightBar}
+                barHighlight={this.state.barHighlight}
+                barNoHighlight={this.state.barNoHighlight}
+                volume={el.volume}
+                />
+
             } else if (el.prices === this.state.averageTag) {
-              return <div className={Styles.bar}
-                onClick={()=> {this.handleOnClick(el)}}
-                style={{height:`${el.volume}%`, backgroundColor: el.prices <= this.state.maxHighlightBar && el.prices >= this.state.leastHighlightBar ? this.state.barHighlight : this.state.barNoHighlight }}
-                key={el._id}>
-                <AverageTag average={this.state.average} height={el.volume}/>
-              </div>
+
+            return  <AverageBar
+                price={el.prices}
+                maxHighlightBar={this.state.maxHighlightBar}
+                leastHighlightBar={this.state.leastHighlightBar}
+                barHighlight={this.state.barHighlight}
+                barNoHighlight={this.state.barNoHighlight}
+                average={this.state.average}
+                volume={el.volume}
+                marketHours={this.state.marketHours}
+                />
+
+          } else {
+
+          return  <NormalBar
+              price={el.prices}
+              maxHighlightBar={this.state.maxHighlightBar}
+              leastHighlightBar={this.state.leastHighlightBar}
+              barHighlight={this.state.barHighlight}
+              barNoHighlight={this.state.barNoHighlight}
+              volume={el.volume}
+              />
+
             }
-            return <div className={Styles.bar}
-                onClick={()=> {this.handleOnClick(el)}}
-              style={{height:`${el.volume}%`, backgroundColor: el.prices <= this.state.maxHighlightBar && el.prices >= this.state.leastHighlightBar ? this.state.barHighlight : this.state.barNoHighlight }}
-              key={el._id} >
-            </div>
-            })
-          }
+          })
+        }
         </div>
     <CurrentPrice
       data={this.state.data}
@@ -100,7 +142,7 @@ class Bars extends React.Component {
     <FiftyTwoWeekInfo
       lowestPrice={this.state.lowestPrice}
        highestPrice={this.state.highestPrice}/>
-  </div>
+   </div>
     )
   }
 }

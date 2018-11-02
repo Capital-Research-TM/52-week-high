@@ -1,0 +1,15 @@
+.showInfo {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 200px;
+  z-index: 1;
+  transform: translate(500px,-10px);
+}
+
+.showInfoRow {
+  width: 100px;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
