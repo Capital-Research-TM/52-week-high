@@ -3,7 +3,7 @@ const calculateAverage = (response) => {
   for (let i = 0; i < response.data.length; i++) {
     total += response.data[i].prices;
   }
-  return total / response.data.length;
+  return (total / response.data.length).toFixed(2);
 }
 
 const findCurrentPrice = (response) => {
@@ -71,6 +71,32 @@ const percentageDiff = (currentPrice, average) => {
   return `${percent}%`;
 }
 
+
+const findNextHighestNumber = (arr, average) => {
+
+let num = 0;
+const innerFunc = (checkArr) => {
+  if (checkArr.length === 1) {
+    num = checkArr[0].prices;
+    return;
+  }
+  let closestNum = 0;
+  let midPoint = Math.floor(checkArr.length/2);
+  if (checkArr[midPoint].prices === average) {
+    num = midPoint;
+  } else if (checkArr[midPoint].prices < average) {
+    let newArr = checkArr.slice(midPoint)
+    innerFunc(newArr);
+  } else {
+    let newArr = checkArr.slice(0, midPoint);
+    innerFunc(newArr);
+  }
+}
+innerFunc(arr);
+return num;
+}
+
+
 export {
   calculateAverage,
   findCurrentPrice,
@@ -78,5 +104,6 @@ export {
   leastHighlightBarColor,
   barNoHighlightColor,
   barHighlightColor,
-  percentageDiff
+  percentageDiff,
+  findNextHighestNumber
 };

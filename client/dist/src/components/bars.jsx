@@ -1,6 +1,7 @@
 import React from 'react';
 import CurrentPrice from './currentPrice.jsx';
 import FiftyTwoWeekInfo from './fiftyTwoWeekInfo.jsx';
+import AverageTag from './averageTag.jsx';
 
 import {
   calculateAverage,
@@ -9,7 +10,8 @@ import {
   leastHighlightBarColor,
   barNoHighlightColor,
   barHighlightColor,
-  percentageDiff
+  percentageDiff,
+  findNextHighestNumber
 } from './utilities/bars.js';
 
 import axios from 'axios';
@@ -30,7 +32,8 @@ class Bars extends React.Component {
       barHighlight: 'white',
       lowestPrice: 0,
       highestPrice: 100,
-      percentageDiff: '0'
+      percentageDiff: '0',
+      averageTag: 0
     }
   }
   componentDidMount(props) {
@@ -48,15 +51,17 @@ class Bars extends React.Component {
           barHighlight: barHighlightColor(this.state.marketHours, currentPrice, average),
           lowestPrice: response.data[0].prices,
           highestPrice: response.data[response.data.length - 1].prices,
-          percentageDiff: percentageDiff(currentPrice, average)
+          percentageDiff: percentageDiff(currentPrice, average),
+          averageTag: findNextHighestNumber(response.data, average)
         });
       })
       .catch((error) => {
         console.log(error);
       })
+
   }
   render() {
-    console.log("bars:", this.state.percentageDiff);
+    console.log("next:", this.state.averageTag);
     return (
       <div className={Styles.containGraphToBottomBar}>
         <div className={Styles.barContainer}>
@@ -65,6 +70,10 @@ class Bars extends React.Component {
             if (el.prices === this.state.currentPrice){
               return <div id={Styles.target} style={{height:`${el.volume}%`, backgroundColor: el.prices <= this.state.maxHighlightBar && el.prices >= this.state.leastHighlightBar ? this.state.barHighlight : this.state.barNoHighlight }} key={el._id} >
                   <div></div>
+              </div>
+            } else if (el.prices === this.state.averageTag) {
+              return <div className={Styles.bar} style={{height:`${el.volume}%`, backgroundColor: el.prices <= this.state.maxHighlightBar && el.prices >= this.state.leastHighlightBar ? this.state.barHighlight : this.state.barNoHighlight }} key={el._id}>
+                <AverageTag average={this.state.average}/>
               </div>
             }
             return <div className={Styles.bar} style={{height:`${el.volume}%`, backgroundColor: el.prices <= this.state.maxHighlightBar && el.prices >= this.state.leastHighlightBar ? this.state.barHighlight : this.state.barNoHighlight }} key={el._id} >
