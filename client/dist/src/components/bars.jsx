@@ -15,8 +15,6 @@ import {
 } from './utilities/bars.js';
 import axios from 'axios';
 import Styles from '../css/bars.css';
-
-
 class Bars extends React.Component {
   constructor(props) {
     super(props)
