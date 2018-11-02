@@ -13,9 +13,9 @@ import {
   percentageDiff,
   findNextHighestNumber
 } from './utilities/bars.js';
-
 import axios from 'axios';
 import Styles from '../css/bars.css';
+
 
 class Bars extends React.Component {
   constructor(props) {
@@ -59,6 +59,7 @@ class Bars extends React.Component {
         console.log(error);
       })
 
+
   }
   render() {
     console.log("next:", this.state.averageTag);
@@ -85,6 +86,7 @@ class Bars extends React.Component {
     <FiftyTwoWeekInfo lowestPrice={this.state.lowestPrice} highestPrice={this.state.highestPrice}/>
   </div>
     )
+
   }
 }
 
