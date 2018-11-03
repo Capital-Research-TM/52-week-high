@@ -45,7 +45,7 @@ class Bars extends React.Component {
     this.handleTableOnClick = this.handleTableOnClick.bind(this);
   }
   componentDidMount(props) {
-    axios.get('/company/19')
+    axios.get('/company/11')
       .then((response) => {
         let average = calculateAverage(response);
         let currentPrice = findCurrentPrice(response);
@@ -127,6 +127,7 @@ class Bars extends React.Component {
               barHighlight={this.state.barHighlight}
               barNoHighlight={this.state.barNoHighlight}
               volume={el.volume}
+              marketHours={this.props.marketHours}
               />
 
             }
