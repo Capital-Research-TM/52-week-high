@@ -11,19 +11,15 @@
   align-items: flex-end;
   border-top: 1px solid rgba(211, 211, 211, .5);
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
  .bar {
   width: 11px;
   background-color: #f45531;
+
 }
 
 .e:hover {
   background-color: red;
-}
-
-#target {
-  width: 11px;
-  background-color: #f45531;
 }

@@ -128,6 +128,7 @@ class Bars extends React.Component {
               barHighlight={this.state.barHighlight}
               barNoHighlight={this.state.barNoHighlight}
               volume={el.volume}
+              marketHours={this.props.marketHours}
               />
 
             }
