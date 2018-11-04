@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">18.18% </span>
+        <span class="strong">21.74% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>12/66</span>
+        <span class='fraction'>10/46</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/38</span>
+        <span class='fraction'>0/14</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">11.11% </span>
+        <span class="strong">14.29% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/9</span>
+        <span class='fraction'>1/7</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">18.18% </span>
+        <span class="strong">21.74% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>12/66</span>
+        <span class='fraction'>10/46</span>
       </div>
     </div>
   </div>
@@ -123,36 +123,7 @@
 78
 79
 80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90
-91
-92
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109
-110</td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+81</td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">3x</span>
@@ -188,33 +159,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -248,8 +192,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -297,40 +239,13 @@ const leastHighlightBarColor = <span class="fstat-no" title="function not covere
 <span class="cstat-no" title="statement not covered" >  return leastHighlightBar;</span>
 }
 &nbsp;
-const barNoHighlightColor = <span class="fstat-no" title="function not covered" >(m</span>arketHours, currentPrice, average) =&gt; {
-  let barNoHighlight = <span class="cstat-no" title="statement not covered" >'';</span>
-<span class="cstat-no" title="statement not covered" >  if (marketHours &amp;&amp; currentPrice &gt; average) {</span>
-<span class="cstat-no" title="statement not covered" >    barNoHighlight = 'rgba(211, 211, 211, .5)';</span>
-  } else <span class="cstat-no" title="statement not covered" >if (!marketHours &amp;&amp; currentPrice &lt; average) {</span>
-<span class="cstat-no" title="statement not covered" >    barNoHighlight = 'rgba(211, 211, 211, .5)';</span>
-  } else <span class="cstat-no" title="statement not covered" >if (!marketHours &amp;&amp; currentPrice &gt; average) {</span>
-<span class="cstat-no" title="statement not covered" >    barNoHighlight = '#0e0d0d';</span>
-  } else {
-<span class="cstat-no" title="statement not covered" >    barNoHighlight = '#0e0d0d';</span>
-  }
-<span class="cstat-no" title="statement not covered" >  return barNoHighlight;</span>
-}
-&nbsp;
-const barHighlightColor = <span class="fstat-no" title="function not covered" >(m</span>arketHours, currentPrice, average) =&gt; {
-  let barHighlight = <span class="cstat-no" title="statement not covered" >'';</span>
-<span class="cstat-no" title="statement not covered" >  if (marketHours &amp;&amp; currentPrice &gt; average) {</span>
-<span class="cstat-no" title="statement not covered" >    barHighlight = '#21ce99';</span>
-  } else <span class="cstat-no" title="statement not covered" >if (!marketHours &amp;&amp; currentPrice &lt; average) {</span>
-<span class="cstat-no" title="statement not covered" >    barHighlight = '#f45531';</span>
-  } else <span class="cstat-no" title="statement not covered" >if (!marketHours &amp;&amp; currentPrice &gt; average) {</span>
-<span class="cstat-no" title="statement not covered" >    barHighlight = '#21ce99';</span>
-  } else {
-<span class="cstat-no" title="statement not covered" >    barHighlight = '#f45531';</span>
-  }
-<span class="cstat-no" title="statement not covered" >  return barHighlight;</span>
-}
 &nbsp;
 const percentageDiff = <span class="fstat-no" title="function not covered" >(c</span>urrentPrice, average) =&gt; {
 <span class="cstat-no" title="statement not covered" >  if (currentPrice &lt; average) {</span>
-    const percent = <span class="cstat-no" title="statement not covered" >JSON.stringify(Math.round((currentPrice / average) * 100));</span>
+    const percent = <span class="cstat-no" title="statement not covered" >JSON.stringify(Math.round(100 - (currentPrice / average) * 100));</span>
 <span class="cstat-no" title="statement not covered" >    return `-${percent}%`;</span>
   }
-  const percent = <span class="cstat-no" title="statement not covered" >JSON.stringify(Math.round((average / currentPrice)* 100));</span>
+  const percent = <span class="cstat-no" title="statement not covered" >JSON.stringify(Math.round( 100 - (average / currentPrice) * 100));</span>
 <span class="cstat-no" title="statement not covered" >  return `${percent}%`;</span>
 }
 &nbsp;
@@ -365,8 +280,6 @@ export {
   findCurrentPrice,
   maxHighLightBarColor,
   leastHighlightBarColor,
-  barNoHighlightColor,
-  barHighlightColor,
   percentageDiff,
   findNextHighestNumber
 };
@@ -376,7 +289,7 @@ export {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Nov 03 2018 15:58:49 GMT-0700 (Pacific Daylight Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Nov 03 2018 20:21:09 GMT-0700 (Pacific Daylight Time)
 </div>
 </div>
 <script src="../../prettify.js"></script>

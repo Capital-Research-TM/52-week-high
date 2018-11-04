@@ -188,14 +188,7 @@
 143
 144
 145
-146
-147
-148
-149
-150
-151</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+146</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -218,10 +211,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -245,8 +234,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -290,18 +277,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -312,10 +289,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -357,8 +347,6 @@ import {
   findCurrentPrice,
   maxHighLightBarColor,
   leastHighlightBarColor,
-  barNoHighlightColor,
-  barHighlightColor,
   percentageDiff,
   findNextHighestNumber
 } from './utilities/bars.js';
@@ -372,11 +360,6 @@ class Bars extends React.Component {
       currentPrice: 0,
       average: 0,
       marketHours: this.props.marketIsOpen,
-      currentPriceIndex: false,
-      maxHighlightBar: 'white',
-      leastHighlightBar: 'black',
-      barNoHighlight: 'black',
-      barHighlight: 'white',
       lowestPrice: 0,
       highestPrice: 100,
       percentageDiff: '0',
@@ -384,13 +367,14 @@ class Bars extends React.Component {
       isToggleOn: false,
       showPrice: 0,
       showVolume: 0,
-      showCompanyName: ''
+      showCompanyName: '',
+      marketUp: this.props.marketUp
     }
     this.handleOnClick = this.handleBarOnClick.bind(this);
     this.handleTableOnClick = this.handleTableOnClick.bind(this);
   }
   componentDidMount(props) {
-    axios.get('/company/11')
+    axios.get('/company/8')
       .then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {
         let average = <span class="cstat-no" title="statement not covered" >calculateAverage(response);</span>
         let currentPrice = <span class="cstat-no" title="statement not covered" >findCurrentPrice(response);</span>
@@ -400,8 +384,6 @@ class Bars extends React.Component {
           average,
           maxHighlightBar: maxHighLightBarColor(currentPrice, average),
           leastHighlightBar: leastHighlightBarColor(currentPrice, average),
-          barNoHighlight: barNoHighlightColor(this.state.marketHours, currentPrice, average),
-          barHighlight: barHighlightColor(this.state.marketHours, currentPrice, average),
           lowestPrice: response.data[0].prices,
           highestPrice: response.data[response.data.length - 1].prices,
           percentageDiff: percentageDiff(currentPrice, average),
@@ -437,17 +419,19 @@ class Bars extends React.Component {
             showVolume={this.state.showVolume}
             showPrice={this.state.showPrice}
             showCompanyName={this.state.showCompanyName}
+            marketUp={this.state.marketUp}
             /&gt;
         &lt;div className={Styles.barContainer}&gt;
           {this.state.data.map(<span class="fstat-no" title="function not covered" >(e</span>l, index)=&gt; {
 <span class="cstat-no" title="statement not covered" >            if (el.prices === this.state.currentPrice){</span>
 <span class="cstat-no" title="statement not covered" >            return &lt;CurrentPriceBar</span>
                 price={el.prices}
+                average={this.state.average}
                 maxHighlightBar={this.state.maxHighlightBar}
                 leastHighlightBar={this.state.leastHighlightBar}
-                barHighlight={this.state.barHighlight}
-                barNoHighlight={this.state.barNoHighlight}
                 volume={el.volume}
+                marketHours={this.state.marketHours}
+                marketUp={this.state.marketUp}
                 /&gt;
 &nbsp;
             } else <span class="cstat-no" title="statement not covered" >if (el.prices === this.state.averageTag) {</span>
@@ -456,11 +440,10 @@ class Bars extends React.Component {
                 price={el.prices}
                 maxHighlightBar={this.state.maxHighlightBar}
                 leastHighlightBar={this.state.leastHighlightBar}
-                barHighlight={this.state.barHighlight}
-                barNoHighlight={this.state.barNoHighlight}
                 average={this.state.average}
                 volume={el.volume}
                 marketHours={this.state.marketHours}
+                marketUp={this.state.marketUp}
                 /&gt;
 &nbsp;
           } else {
@@ -469,10 +452,9 @@ class Bars extends React.Component {
               price={el.prices}
               maxHighlightBar={this.state.maxHighlightBar}
               leastHighlightBar={this.state.leastHighlightBar}
-              barHighlight={this.state.barHighlight}
-              barNoHighlight={this.state.barNoHighlight}
               volume={el.volume}
               marketHours={this.props.marketHours}
+              marketUp={this.state.marketUp}
               /&gt;
 &nbsp;
             }
@@ -483,10 +465,13 @@ class Bars extends React.Component {
       data={this.state.data}
       price={this.state.currentPrice}
       average={this.state.average}
-      percent={this.state.percentageDiff}/&gt;
+      percent={this.state.percentageDiff}
+      marketUp={this.state.marketUp}/&gt;
     &lt;FiftyTwoWeekInfo
       lowestPrice={this.state.lowestPrice}
-       highestPrice={this.state.highestPrice}/&gt;
+      marketHours={this.props.marketHours}
+       highestPrice={this.state.highestPrice}
+       marketUp={this.state.marketUp}/&gt;
    &lt;/div&gt;
     )
 &nbsp;
@@ -499,7 +484,7 @@ export default Bars;</pre></td></tr>
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Nov 03 2018 15:58:49 GMT-0700 (Pacific Daylight Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Nov 03 2018 20:21:09 GMT-0700 (Pacific Daylight Time)
 </div>
 </div>
 <script src="../prettify.js"></script>

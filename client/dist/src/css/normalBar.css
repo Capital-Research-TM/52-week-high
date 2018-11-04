@@ -1,3 +1,11 @@
+.barTrue {
+  width: 11px;
+  display: flex;
+  flex-direction: column;
+  border-width: 1px;
+
+}
+
 .bar {
  width: 11px;
  background-color: #f45531;
