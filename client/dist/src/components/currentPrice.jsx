@@ -8,9 +8,9 @@ const CurrentPrice = (props) => {
           {props.data.map((el) =>
             {
             if (el.prices === props.price) {
-              return <div className={props.marketUp ? styles.sphereHigh : styles.sphereLow} id={styles.e} >
-                <Percentage className={styles.percentage} price={props.price} average={props.average} percent={props.percent} />
-                <div className={props.marketUp ? styles.lineHigh : styles.lineLow}>
+              return <div className={props.price > props.average  ? styles.sphereHigh : styles.sphereLow} style={{backgroundColor: props.marketUp  ? '#21ce99' : '#f45531' }} >
+                <Percentage className={styles.percentage} marketUp={props.marketUp} price={props.price} average={props.average} percent={props.percent} />
+                <div className={props.price > props.average  ? styles.lineHigh : styles.lineLow} style={{backgroundColor: props.marketUp  ? '#21ce99' : '#f45531'}}>
                 </div>
               </div>
 }

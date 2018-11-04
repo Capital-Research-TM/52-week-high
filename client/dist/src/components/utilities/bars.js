@@ -34,40 +34,13 @@ const leastHighlightBarColor = (currentPrice, average) => {
   return leastHighlightBar;
 }
 
-const barNoHighlightColor = (marketUp, currentPrice, average) => {
-  let barNoHighlight = '';
-  if (marketUp) {
-    barNoHighlight = 'rgba(211, 211, 211, .5)';
-  } else if (!marketHours && currentPrice < average) {
-    barNoHighlight = 'rgba(211, 211, 211, .5)';
-  } else if (!marketHours && currentPrice > average) {
-    barNoHighlight = '#0e0d0d';
-  } else {
-    barNoHighlight = '#0e0d0d';
-  }
-  return barNoHighlight;
-}
-
-const barHighlightColor = (marketHours, currentPrice, average) => {
-  let barHighlight = '';
-  if (marketHours && currentPrice > average) {
-    barHighlight = '#21ce99';
-  } else if (!marketHours && currentPrice < average) {
-    barHighlight = '#f45531';
-  } else if (!marketHours && currentPrice > average) {
-    barHighlight = '#21ce99';
-  } else {
-    barHighlight = '#f45531';
-  }
-  return barHighlight;
-}
 
 const percentageDiff = (currentPrice, average) => {
   if (currentPrice < average) {
-    const percent = JSON.stringify(Math.round((currentPrice / average) * 100));
+    const percent = JSON.stringify(Math.round(100 - (currentPrice / average) * 100));
     return `-${percent}%`;
   }
-  const percent = JSON.stringify(Math.round((average / currentPrice)* 100));
+  const percent = JSON.stringify(Math.round( 100 - (average / currentPrice) * 100));
   return `${percent}%`;
 }
 
@@ -102,8 +75,6 @@ export {
   findCurrentPrice,
   maxHighLightBarColor,
   leastHighlightBarColor,
-  barNoHighlightColor,
-  barHighlightColor,
   percentageDiff,
   findNextHighestNumber
 };
