@@ -1,3 +1,5 @@
+import Faker from 'faker';
+
 const marketIsOpen = () => {
   const date = new Date();
   const currentHour = date.getHours();
@@ -8,6 +10,12 @@ const marketIsOpen = () => {
   }
 }
 
+const marketIsUp = ()=> {
+  return Faker.random.boolean();
+}
 
 
-export {marketIsOpen};
+
+
+export {marketIsOpen,
+marketIsUp};

@@ -34,9 +34,9 @@ const leastHighlightBarColor = (currentPrice, average) => {
   return leastHighlightBar;
 }
 
-const barNoHighlightColor = (marketHours, currentPrice, average) => {
+const barNoHighlightColor = (marketUp, currentPrice, average) => {
   let barNoHighlight = '';
-  if (marketHours && currentPrice > average) {
+  if (marketUp) {
     barNoHighlight = 'rgba(211, 211, 211, .5)';
   } else if (!marketHours && currentPrice < average) {
     barNoHighlight = 'rgba(211, 211, 211, .5)';
