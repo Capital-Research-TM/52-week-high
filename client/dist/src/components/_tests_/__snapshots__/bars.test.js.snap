@@ -1,5 +1,3 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
 exports[`renders correctly 1`] = `
 <div
   className="containGraphToBottomBar"
@@ -11,7 +9,6 @@ exports[`renders correctly 1`] = `
   <div
     className="overlay"
   >
-     
   </div>
   <div
     className="fiftyTwoWeek"
@@ -20,10 +17,10 @@ exports[`renders correctly 1`] = `
       className="lowest"
     >
       <span>
-        52 week low 
+        52 week low
       </span>
       <span>
-        0.00
+      0
       </span>
     </div>
     <div
@@ -33,7 +30,7 @@ exports[`renders correctly 1`] = `
         52 week high
       </span>
       <span>
-        100.00
+        100
       </span>
     </div>
   </div>

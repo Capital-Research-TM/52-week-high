@@ -32,7 +32,7 @@ class NormalBar extends React.Component {
         borderStyle: this.state.hover ? 'solid' : 'hidden', borderColor: this.props.marketHours ? 'black' : 'white'  }} >
         <div className={this.state.hover ? styles.hover : styles.hidden}
           style={{color: this.props.marketHours ? 'black': 'white'}}
-          ><span>price: {this.props.price} </span><span> volume: {this.props.volume}</span></div>
+          ><span style={{position: 'relative', transform: 'translateY(-${this.props.volume}%)', bottom: '20px'}}>price: {this.props.price} </span><span style={{position: 'absolute', transform: 'transformY(${this.props.volume}%)', bottom: '-20px'}}> volume: {this.props.volume}</span></div>
       </div>)
 
   }
