@@ -4,7 +4,7 @@
   "description": "Making the bar for tracking stock trends over a 52 week period.",
   "main": "server.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "start": "node server.js",
     "react-dev": "webpack -d --watch",
     "start-mongo": "mongod",
@@ -56,5 +56,14 @@
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "styled-components": "^4.0.3"
+  },
+  "jest": {
+  "transform": {
+    "^.+\\.jsx?$": "babel-jest"
+  },
+  "moduleNameMapper": {
+    "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+    "\\.(css|less)$": "identity-obj-proxy"
   }
+}
 }

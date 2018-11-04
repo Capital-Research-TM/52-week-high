@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="containGraphToBottomBar"
+>
+  <div />
+  <div
+    className="barContainer"
+  />
+  <div
+    className="overlay"
+  >
+     
+  </div>
+  <div
+    className="fiftyTwoWeek"
+  >
+    <div
+      className="lowest"
+    >
+      <span>
+        52 week low 
+      </span>
+      <span>
+        0.00
+      </span>
+    </div>
+    <div
+      className="highest"
+    >
+      <span>
+        52 week high
+      </span>
+      <span>
+        100.00
+      </span>
+    </div>
+  </div>
+</div>
+`;

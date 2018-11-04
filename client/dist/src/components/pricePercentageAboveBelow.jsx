@@ -6,10 +6,10 @@ const Percentage = (props) => {
     return (
       <div className={styles.pricePercentageContainer} >
         <div className={styles.currentPricePercentage}>
-        <span style={{color: '#21ce99' }}>{props.percent} Higher</span>
+        <span style={{color: props.marketUp ? '#21ce99' : '#f45531'}}>{props.percent} Higher</span>
         </div>
         <div className={styles.currentPricePercentage}>
-          <span style={{color: '#21ce99' }} id={styles.rightNow}>Right Now</span>
+          <span style={{color: props.marketUp ? '#21ce99': '#f45531' }} id={styles.rightNow}>Right Now</span>
         </div>
       </div>
     )
@@ -17,10 +17,10 @@ const Percentage = (props) => {
   return (
     <div className={styles.pricePercentageContainer} >
       <div className={styles.currentPricePercentage}>
-      <span style={{color: '#f45531' }}>{props.percent} Higher</span>
+      <span style={{color: props.marketUp ? '#21ce99' : '#f45531'}}>{props.percent} Lower</span>
       </div>
       <div className={styles.currentPricePercentage}>
-        <span style={{color: '#f45531' }} id={styles.rightNow}>Right Now</span>
+        <span style={{color: props.marketUp ? '#21ce99' : '#f45531' }} id={styles.rightNow}>Right Now</span>
       </div>
     </div>
   )

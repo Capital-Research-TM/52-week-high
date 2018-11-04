@@ -6,11 +6,11 @@ const FiftyTwoWeekInfo = (props) => {
     <div className={styles.fiftyTwoWeek}>
       <div className={styles.lowest}>
         <span>52 week low </span>
-        <span>{props.lowestPrice}</span>
+        <span>{props.lowestPrice.toFixed(2)}</span>
       </div>
       <div className={styles.highest}>
         <span>52 week high</span>
-        <span>{props.highestPrice}</span>
+        <span>{props.highestPrice.toFixed(2)}</span>
         </div>
       </div>
   )

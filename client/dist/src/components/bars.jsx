@@ -12,8 +12,6 @@ import {
   findCurrentPrice,
   maxHighLightBarColor,
   leastHighlightBarColor,
-  barNoHighlightColor,
-  barHighlightColor,
   percentageDiff,
   findNextHighestNumber
 } from './utilities/bars.js';
@@ -27,11 +25,6 @@ class Bars extends React.Component {
       currentPrice: 0,
       average: 0,
       marketHours: this.props.marketIsOpen,
-      currentPriceIndex: false,
-      maxHighlightBar: 'white',
-      leastHighlightBar: 'black',
-      barNoHighlight: 'black',
-      barHighlight: 'white',
       lowestPrice: 0,
       highestPrice: 100,
       percentageDiff: '0',
@@ -39,13 +32,14 @@ class Bars extends React.Component {
       isToggleOn: false,
       showPrice: 0,
       showVolume: 0,
-      showCompanyName: ''
+      showCompanyName: '',
+      marketUp: this.props.marketUp
     }
     this.handleOnClick = this.handleBarOnClick.bind(this);
     this.handleTableOnClick = this.handleTableOnClick.bind(this);
   }
   componentDidMount(props) {
-    axios.get('/company/11')
+    axios.get('/company/8')
       .then((response) => {
         let average = calculateAverage(response);
         let currentPrice = findCurrentPrice(response);
@@ -55,8 +49,6 @@ class Bars extends React.Component {
           average,
           maxHighlightBar: maxHighLightBarColor(currentPrice, average),
           leastHighlightBar: leastHighlightBarColor(currentPrice, average),
-          barNoHighlight: barNoHighlightColor(this.state.marketHours, currentPrice, average),
-          barHighlight: barHighlightColor(this.state.marketHours, currentPrice, average),
           lowestPrice: response.data[0].prices,
           highestPrice: response.data[response.data.length - 1].prices,
           percentageDiff: percentageDiff(currentPrice, average),
@@ -92,17 +84,19 @@ class Bars extends React.Component {
             showVolume={this.state.showVolume}
             showPrice={this.state.showPrice}
             showCompanyName={this.state.showCompanyName}
+            marketUp={this.state.marketUp}
             />
         <div className={Styles.barContainer}>
           {this.state.data.map((el, index)=> {
             if (el.prices === this.state.currentPrice){
             return <CurrentPriceBar
                 price={el.prices}
+                average={this.state.average}
                 maxHighlightBar={this.state.maxHighlightBar}
                 leastHighlightBar={this.state.leastHighlightBar}
-                barHighlight={this.state.barHighlight}
-                barNoHighlight={this.state.barNoHighlight}
                 volume={el.volume}
+                marketHours={this.state.marketHours}
+                marketUp={this.state.marketUp}
                 />
 
             } else if (el.prices === this.state.averageTag) {
@@ -111,11 +105,10 @@ class Bars extends React.Component {
                 price={el.prices}
                 maxHighlightBar={this.state.maxHighlightBar}
                 leastHighlightBar={this.state.leastHighlightBar}
-                barHighlight={this.state.barHighlight}
-                barNoHighlight={this.state.barNoHighlight}
                 average={this.state.average}
                 volume={el.volume}
                 marketHours={this.state.marketHours}
+                marketUp={this.state.marketUp}
                 />
 
           } else {
@@ -124,10 +117,9 @@ class Bars extends React.Component {
               price={el.prices}
               maxHighlightBar={this.state.maxHighlightBar}
               leastHighlightBar={this.state.leastHighlightBar}
-              barHighlight={this.state.barHighlight}
-              barNoHighlight={this.state.barNoHighlight}
               volume={el.volume}
               marketHours={this.props.marketHours}
+              marketUp={this.state.marketUp}
               />
 
             }
@@ -138,10 +130,13 @@ class Bars extends React.Component {
       data={this.state.data}
       price={this.state.currentPrice}
       average={this.state.average}
-      percent={this.state.percentageDiff}/>
+      percent={this.state.percentageDiff}
+      marketUp={this.state.marketUp}/>
     <FiftyTwoWeekInfo
       lowestPrice={this.state.lowestPrice}
-       highestPrice={this.state.highestPrice}/>
+      marketHours={this.props.marketHours}
+       highestPrice={this.state.highestPrice}
+       marketUp={this.state.marketUp}/>
    </div>
     )
 

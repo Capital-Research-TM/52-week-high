@@ -22,11 +22,14 @@ class NormalBar extends React.Component {
     })
   }
   render() {
+    const highLight = this.props.marketUp ? '#21ce99' : '#f45531';
+    const noHighlight = this.props.marketHours ? 'rgba(211, 211, 211, .5)' : '#0e0d0d';
     return (
-      <div className={styles.bar}
+      <div className={this.state.hover ? styles.barTrue : styles.bar}
         key={this.props.price}
         onMouseOver={this.handleOnHover} onMouseLeave={this.handleOnMouseLeave}
-        style={{height:`${this.props.volume}%`, backgroundColor: this.props.price <= this.props.maxHighlightBar && this.props.price >= this.props.leastHighlightBar ? this.props.barHighlight : this.props.barNoHighlight }} >
+        style={{height:`${this.props.volume}%`, backgroundColor: this.props.price <= this.props.maxHighlightBar && this.props.price >= this.props.leastHighlightBar ? highLight : noHighlight,
+        borderStyle: this.state.hover ? 'solid' : 'hidden', borderColor: this.props.marketHours ? 'black' : 'white'  }} >
         <div className={this.state.hover ? styles.hover : styles.hidden}
           style={{color: this.props.marketHours ? 'black': 'white'}}
           ><span>price: {this.props.price} </span><span> volume: {this.props.volume}</span></div>
