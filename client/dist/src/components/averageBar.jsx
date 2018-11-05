@@ -31,9 +31,11 @@ class AverageBar extends React.Component {
           onMouseOver={this.handleOnHover} onMouseLeave={this.handleOnMouseLeave}
         key={this.props.price}
         style={{height:`${this.props.volume}%`, backgroundColor: this.props.price <= this.props.maxHighlightBar && this.props.price >= this.props.leastHighlightBar ? highLight : noHighlight,
-        borderStyle: this.state.hover ? 'solid' : 'hidden', borderColor: this.props.marketHours ? 'black' : 'white' }}
-          style={{color: this.props.marketHours ? 'black' : 'white'}}>
+        borderStyle: this.state.hover ? 'solid' : 'hidden', borderColor: this.props.marketHours ? 'black' : 'white' }}>
+          <div className={this.state.hover ? styles.hover : styles.hidden}
+            style={{color: this.props.marketHours ? 'black' : 'white'}}>
           <span style={{position: 'relative', transform: 'translateY(-${this.props.volume}%)', bottom: '20px'}}>price: {this.props.price} </span><span style={{position: 'absolute', transform: 'transformY(${this.props.volume}%)', bottom: '-20px'}}> volume: {this.props.volume}</span>
+          </div>
       <AverageTag average={this.props.average} marketHours={this.props.marketHours}/>
       </div>)
   }
