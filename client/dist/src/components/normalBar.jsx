@@ -16,11 +16,13 @@ class NormalBar extends React.Component {
       hover: true
     })
   }
-  handleOnMouseLeave(event) {
+
+  handleOnMouseLeave() {
     this.setState({
       hover: false
     })
   }
+
   render() {
     console.log('mrkethours', this.props.marketHours)
     const highLight = this.props.marketUp ? '#21ce99' : '#f45531';
@@ -35,7 +37,6 @@ class NormalBar extends React.Component {
           style={{color: this.props.marketHours ? 'black' : 'white'}}
           ><span style={{position: 'relative', transform: 'translateY(-${this.props.volume}%)', bottom: '20px'}}>price: {this.props.price} </span><span style={{position: 'absolute', transform: 'transformY(${this.props.volume}%)', bottom: '-20px'}}> volume: {this.props.volume}</span></div>
       </div>)
-
   }
 }
 

@@ -1,4 +1,27 @@
-.bar {
- width: 11px;
- background-color: #f45531;
+
+
+.targetTrue {
+  width: 11px;
+  display: flex;
+  flex-direction: column;
+  border-width: 1px;
+}
+
+.target {
+  width: 11px;
+  display: flex;
+  flex-direction: column;
+}
+
+.hidden {
+  visibility: hidden;
+  z-index: 9999;
+}
+
+.hover {
+  visibility: visible;
+  display: flex;
+  flex-direction: row;
+  z-index: 11;
+  width: 100px;
 }

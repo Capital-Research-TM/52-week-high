@@ -7,7 +7,6 @@
 
 .bar {
  width: 11px;
- background-color: #f45531;
  display: flex;
  flex-direction: column;
 }

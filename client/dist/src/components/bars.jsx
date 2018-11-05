@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import CurrentPrice from './currentPrice.jsx';
 import FiftyTwoWeekInfo from './fiftyTwoWeekInfo.jsx';
 import AverageTag from './averageTag.jsx';
@@ -15,7 +16,6 @@ import {
   percentageDiff,
   findNextHighestNumber
 } from './utilities/bars.js';
-import axios from 'axios';
 import Styles from '../css/bars.css';
 class Bars extends React.Component {
   constructor(props) {
@@ -38,6 +38,7 @@ class Bars extends React.Component {
     this.handleOnClick = this.handleBarOnClick.bind(this);
     this.handleTableOnClick = this.handleTableOnClick.bind(this);
   }
+
   componentDidMount(props) {
     axios.get('/company/8')
       .then((response) => {
