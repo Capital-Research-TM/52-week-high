@@ -18,8 +18,3 @@ module.exports = {
   "jsx-a11y",
 ]
 };
-
-Message Input
-
-
-Message @alan.zhang
