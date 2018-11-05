@@ -22,6 +22,7 @@ class NormalBar extends React.Component {
     })
   }
   render() {
+    console.log('mrkethours', this.props.marketHours)
     const highLight = this.props.marketUp ? '#21ce99' : '#f45531';
     const noHighlight = this.props.marketHours ? 'rgba(211, 211, 211, .5)' : '#0e0d0d';
     return (
@@ -31,7 +32,7 @@ class NormalBar extends React.Component {
         style={{height:`${this.props.volume}%`, backgroundColor: this.props.price <= this.props.maxHighlightBar && this.props.price >= this.props.leastHighlightBar ? highLight : noHighlight,
         borderStyle: this.state.hover ? 'solid' : 'hidden', borderColor: this.props.marketHours ? 'black' : 'white'  }} >
         <div className={this.state.hover ? styles.hover : styles.hidden}
-          style={{color: this.props.marketHours ? 'black': 'white'}}
+          style={{color: this.props.marketHours ? 'black' : 'white'}}
           ><span style={{position: 'relative', transform: 'translateY(-${this.props.volume}%)', bottom: '20px'}}>price: {this.props.price} </span><span style={{position: 'absolute', transform: 'transformY(${this.props.volume}%)', bottom: '-20px'}}> volume: {this.props.volume}</span></div>
       </div>)
 
