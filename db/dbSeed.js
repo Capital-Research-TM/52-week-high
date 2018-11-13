@@ -62,5 +62,5 @@ const seedDB = ()=> {
     }
   });
 };
-db.drop();
+
 seedDB();

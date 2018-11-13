@@ -4,10 +4,10 @@ const mongoose = require('mongoose');
 const db = mongoose.connection;
 
 
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://jonpaul110:hrsf104@ds141406.mlab.com:41406/price_range');
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
-  console.log('we\'re connected!');
+  console.log('we\'re connected to the database!');
 });
 
 const robinHoodSchema = new mongoose.Schema({
@@ -22,10 +22,9 @@ module.exports.Robin = mongoose.model('Robin', robinHoodSchema);
 
 
 module.exports.drop = () => {
-  console.log('this is a function');
+  console.log('helo ')
   db.dropDatabase(function (err) {
     console.log('dropped database');
-    mongoose.connection.close();
     initialize = false;
   });
 }
