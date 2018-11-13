@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../css/CurrentPriceBar.css';
+import styles from '../css/currentPriceBar.css';
 import AverageTag from './averageTag.jsx';
 
 class CurrentPriceBar extends React.Component {

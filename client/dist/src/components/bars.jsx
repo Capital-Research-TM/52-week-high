@@ -4,7 +4,7 @@ import CurrentPrice from './currentPrice.jsx';
 import FiftyTwoWeekInfo from './fiftyTwoWeekInfo.jsx';
 import AverageTag from './averageTag.jsx';
 import ShowBarInfo from './showBarInfo.jsx';
-import CurrentPriceBar from './CurrentPriceBar.jsx';
+import CurrentPriceBar from './currentPriceBar.jsx';
 import NormalBar from './normalBar.jsx';
 import AverageBar from './averageBar.jsx';
 
@@ -40,7 +40,7 @@ class Bars extends React.Component {
   }
 
   componentDidMount(props) {
-    axios.get('/company/8')
+    axios.get('/range/company/8')
       .then((response) => {
         let average = calculateAverage(response);
         let currentPrice = findCurrentPrice(response);
