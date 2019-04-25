@@ -1,5 +1,6 @@
 
 const express = require('express');
+const expressStaticGzip = require('express-static-gzip');
 
 const path = require('path');
 
@@ -8,8 +9,10 @@ const query = require('./modals/query.js');
 const app = express();
 const port = 3001;
 
+app.use(expressStaticGzip(path.join(__dirname, 'client/dist')));
 
-app.use(express.static(path.join(__dirname, 'client/dist')));
+
+//app.use(express.static(path.join(__dirname, 'client/dist')));
 
 app.get('/range/company/:id', (req, res) => {
   const id = JSON.parse(req.params.id);
@@ -22,10 +25,10 @@ app.get('/range/company/:id', (req, res) => {
   });
 });
 
-app.listen(3001, (err) => {
+app.listen(port, (err) => {
   if (err) {
     console.log('Failed to connect');
   } else {
-  console.log('We are live!');
+  console.log('We are live on 3001');
   }
 })
