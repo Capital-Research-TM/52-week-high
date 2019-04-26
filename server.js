@@ -25,6 +25,14 @@ app.get('/range/company/:id', (req, res) => {
   });
 });
 
+app.get('/*', (req, res) => {
+  const jsx = ( <Layout /> );
+  const reactDom = renderToString(jsx);
+
+  res.writeHead(200, { 'Content-Type': 'text/html' });
+  res.end(htmlTemlate( reactDom ));
+})
+
 app.listen(port, (err) => {
   if (err) {
     console.log('Failed to connect');
@@ -32,3 +40,20 @@ app.listen(port, (err) => {
   console.log('We are live on 3001');
   }
 })
+
+function htmlTemplate( reactDom ) {
+    return `
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="utf-8">
+            <title>React SSR</title>
+        </head>
+
+        <body>
+            <div id="app">${ reactDom }</div>
+            <script src="./app.bundle.js"></script>
+        </body>
+        </html>
+    `;
+}
