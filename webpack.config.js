@@ -19,7 +19,7 @@ module.exports = {
       deleteOriginalAssets: true
     })
   ],
-  entry: path.join(__dirname, '/client/dist/src/index.jsx'),
+  entry: path.join(__dirname, '/client/src/index.jsx'),
   output: {
     filename: 'bundle.js',
     path: path.join(__dirname, '/client/dist')

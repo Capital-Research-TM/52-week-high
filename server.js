@@ -1,8 +1,10 @@
 
 const express = require('express');
 const expressStaticGzip = require('express-static-gzip');
-
+const { renderToString } = require('react-dom/server');
 const path = require('path');
+
+const htmlTemplate = require('./htmlTemplate');
 
 const query = require('./modals/query.js');
 
@@ -25,12 +27,13 @@ app.get('/range/company/:id', (req, res) => {
   });
 });
 
+
 app.get('/*', (req, res) => {
   const jsx = ( <Layout /> );
   const reactDom = renderToString(jsx);
 
   res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.end(htmlTemlate( reactDom ));
+  res.end(htmlTemplate(reactDom));
 })
 
 app.listen(port, (err) => {
@@ -39,21 +42,4 @@ app.listen(port, (err) => {
   } else {
   console.log('We are live on 3001');
   }
-})
-
-function htmlTemplate( reactDom ) {
-    return `
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <meta charset="utf-8">
-            <title>React SSR</title>
-        </head>
-
-        <body>
-            <div id="app">${ reactDom }</div>
-            <script src="./app.bundle.js"></script>
-        </body>
-        </html>
-    `;
-}
+});
